@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hack Acad | The Academy for Ethical Hackers</title>
+  <meta name="description" content="Hack Acad is the professional academy for ethical hacking and offensive security — structured curriculum, real-world labs, and career outcomes for the next generation of security professionals." />
+  <meta name="keywords" content="hack academy, ethical hacking school, cybersecurity education, offensive security training, penetration testing course, hacking curriculum, security certification" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Hack Acad — The Academy for Ethical Hackers" />
+  <meta property="og:description" content="Serious curriculum. Real-world labs. Career outcomes. Where hackers become professionals." />
+  <meta property="og:url" content="https://hackacad.com" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://hackacad.com" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --void:        #050709;
+      --deep:        #080c10;
+      --panel:       #0d1218;
+      --panel-2:     #121820;
+      --border:      rgba(255,255,255,0.07);
+      --green:       #22c55e;
+      --green-bright:#4ade80;
+      --green-dim:   #15803d;
+      --green-glow:  rgba(34,197,94,0.1);
+      --gold:        #eab308;
+      --white:       #eef2f0;
+      --muted:       rgba(238,242,240,0.55);
+      --soft:        rgba(238,242,240,0.32);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--deep);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── BANNER ── */
+    #offer-banner {
+      background: var(--void);
+      color: var(--soft);
+      text-align: center;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.76rem; letter-spacing: 0.03em; line-height: 1.5;
+      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 200;
+    }
+    #offer-banner a {
+      color: var(--green); text-decoration: none; font-weight: 500;
+      border-bottom: 1px solid rgba(34,197,94,0.3);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    #offer-banner a:hover { color: var(--green-bright); border-color: var(--green-bright); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 4rem;
+      background: rgba(8,12,16,0.95);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 1px 28px rgba(0,0,0,0.6); }
+
+    .nav-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.35rem; font-weight: 400;
+      letter-spacing: 0.01em; color: var(--white);
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--green); font-style: italic; }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--void); background: var(--green);
+      border: none; padding: 0.62rem 1.4rem; border-radius: 3px;
+      cursor: pointer; text-decoration: none; white-space: nowrap;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .nav-cta:hover {
+      background: var(--green-bright); transform: translateY(-1px);
+      box-shadow: 0 4px 18px rgba(34,197,94,0.35);
+    }
+
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-drawer {
+      display: none; position: fixed; inset: 0;
+      background: rgba(5,7,9,0.98); z-index: 99;
+      flex-direction: column; align-items: center;
+      justify-content: center; gap: 2.5rem; padding: 2rem;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.2rem; font-weight: 400; color: var(--white);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-drawer a:hover { color: var(--green); }
+    .nav-drawer .drawer-cta {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--void); background: var(--green);
+      padding: 1rem 2.5rem; border-radius: 3px; margin-top: 0.5rem;
+    }
+    .drawer-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none; color: var(--soft);
+      font-size: 1.8rem; cursor: pointer; line-height: 1;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; width: 100%; height: 100svh;
+      min-height: 560px; display: flex;
+      align-items: center; justify-content: center;
+      overflow: hidden; background: var(--void);
+    }
+    #hero-fallback {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, #0a1a0e 0%, var(--void) 70%);
+      z-index: 0;
+    }
+    #hero-bg-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 45%; z-index: 1;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5,7,9,0.75) 0%,
+        rgba(5,7,9,0.42) 38%,
+        rgba(5,7,9,0.92) 100%
+      );
+      z-index: 2;
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 2;
+      background-image:
+        linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px);
+      background-size: 56px 56px; pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative; z-index: 3; text-align: center;
+      color: var(--white); max-width: 860px; padding: 0 1.5rem;
+    }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1.4rem;
+      opacity: 0; animation: fadeUp 1s 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.8rem, 8vw, 7rem);
+      font-weight: 400; line-height: 1.06;
+      letter-spacing: -0.01em; margin-bottom: 1.6rem;
+      opacity: 0; animation: fadeUp 1.1s 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--green); }
+    .hero-sub {
+      font-size: clamp(0.92rem, 2.2vw, 1.05rem); font-weight: 300;
+      line-height: 1.78; color: var(--muted);
+      max-width: 520px; margin: 0 auto 2.2rem;
+      opacity: 0; animation: fadeUp 1.1s 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 1.1s 0.9s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .btn-primary {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--void); background: var(--green);
+      border: none; padding: 0.95rem 2rem; border-radius: 3px;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--green-bright); transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(34,197,94,0.4);
+    }
+    .btn-ghost {
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--white); background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.95rem 2rem; border-radius: 3px;
+      cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--green); background: var(--green-glow); transform: translateY(-2px);
+    }
+    .hero-scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%); z-index: 3;
+      display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+      color: var(--soft); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      animation: scrollFloat 2.5s ease-in-out infinite;
+    }
+    @keyframes scrollFloat {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(7px); }
+    }
+    .scroll-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, rgba(34,197,94,0.6), transparent);
+    }
+
+    /* ── SECTION COMMON ── */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 400; line-height: 1.14;
+      color: var(--white); margin-bottom: 1.4rem;
+    }
+    .section-title em { font-style: italic; color: var(--green); }
+    .section-title.dark { color: var(--void); }
+    .section-title.dark em { color: var(--green-dim); }
+    .section-body {
+      font-size: 0.97rem; font-weight: 300;
+      line-height: 1.85; color: var(--muted); max-width: 520px;
+    }
+    .section-body.dark { color: #4a5a48; }
+
+    /* ── CURRICULUM ── */
+    #curriculum-wrap {
+      padding: 6rem 4rem;
+      background: #f8faf8;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    #curriculum-wrap .section-label { color: var(--green-dim); }
+    #curriculum {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+    }
+
+    .track-list { display: flex; flex-direction: column; gap: 1.5px; }
+    .track {
+      display: grid; grid-template-columns: 64px 1fr auto;
+      align-items: center; gap: 1rem;
+      padding: 1.2rem 1.4rem;
+      background: #fff; border: 1px solid #e4ece4;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .track:hover { background: #f0faf0; border-color: rgba(34,197,94,0.3); }
+    .track-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem; font-weight: 400; font-style: italic;
+      color: rgba(34,197,94,0.35); line-height: 1; text-align: center;
+    }
+    .track-info h4 {
+      font-size: 0.88rem; font-weight: 600;
+      color: #1a2a1a; margin-bottom: 0.15rem;
+    }
+    .track-info p {
+      font-size: 0.76rem; font-weight: 300;
+      color: #5a7a5a; line-height: 1.5;
+    }
+    .track-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.22rem 0.6rem; border-radius: 2px; white-space: nowrap;
+    }
+    .track-badge.beg { color: var(--green-dim); background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); }
+    .track-badge.int { color: #d97706; background: rgba(217,119,6,0.08); border: 1px solid rgba(217,119,6,0.2); }
+    .track-badge.adv { color: #dc2626; background: rgba(220,38,38,0.08); border: 1px solid rgba(220,38,38,0.2); }
+
+    .acad-callout {
+      background: linear-gradient(135deg, #0a1a0e 0%, var(--void) 100%);
+      border-radius: 3px; padding: 2.2rem; margin-top: 1.5px;
+    }
+    .acad-callout .big-word {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.5rem; font-weight: 400; font-style: italic;
+      line-height: 1; color: var(--green); margin-bottom: 0.5rem;
+    }
+    .acad-callout p {
+      font-size: 0.82rem; font-weight: 300;
+      color: rgba(238,242,240,0.58); line-height: 1.68;
+    }
+
+    /* ── OUTCOMES ── */
+    #outcomes {
+      background: var(--panel); padding: 7rem 4rem;
+      border-top: 1px solid var(--border);
+    }
+    .out-inner { max-width: 1200px; margin: 0 auto; }
+    .out-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 4rem;
+    }
+    .out-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s; position: relative; overflow: hidden;
+    }
+    .out-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, var(--green-dim), var(--green));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .out-card:hover::before { transform: scaleX(1); }
+    .out-card:hover { background: var(--green-glow); }
+    .out-stat {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.2rem; font-weight: 400;
+      color: var(--green); line-height: 1; margin-bottom: 0.5rem;
+    }
+    .out-card h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.35rem; font-weight: 400;
+      margin-bottom: 0.8rem; color: var(--white);
+    }
+    .out-card p {
+      font-size: 0.86rem; font-weight: 300;
+      line-height: 1.75; color: var(--muted);
+    }
+
+    /* ── LAB SECTION ── */
+    #labs-wrap {
+      padding: 7rem 4rem; background: var(--deep);
+      border-top: 1px solid var(--border);
+    }
+    #labs {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+
+    /* terminal window */
+    .terminal {
+      background: var(--void); border: 1px solid var(--border);
+      border-radius: 6px; overflow: hidden;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+    }
+    .terminal-bar {
+      background: var(--panel); padding: 0.7rem 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .dot.r { background: #ff5f57; }
+    .dot.y { background: #febc2e; }
+    .dot.g { background: #28c840; }
+    .terminal-title {
+      font-size: 0.68rem; color: var(--soft);
+      margin: 0 auto; letter-spacing: 0.06em;
+    }
+    .terminal-body { padding: 1.5rem 1.4rem; line-height: 2.0; }
+    .t-prompt { color: var(--green); }
+    .t-cmd    { color: var(--white); }
+    .t-out    { color: var(--muted); }
+    .t-flag   { color: var(--gold); font-weight: 600; }
+    .t-info   { color: #60a5fa; }
+    .t-cursor { color: var(--green); animation: blink 1s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+    .lab-stats { display: flex; gap: 2rem; margin-top: 2rem; }
+    .lab-stat  { flex: 1; text-align: center; }
+    .lab-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.6rem; font-weight: 400;
+      color: var(--green); line-height: 1;
+    }
+    .lab-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--soft); margin-top: 0.4rem;
+    }
+    .lab-divider { width: 1px; background: var(--border); align-self: stretch; }
+
+    /* ── ROLES ── */
+    #roles {
+      background: linear-gradient(160deg, var(--panel-2) 0%, var(--void) 100%);
+      padding: 7rem 4rem; text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    #roles .section-title { margin: 0 auto 1.4rem; }
+    #roles .section-body  { color: var(--muted); margin: 0 auto 3.5rem; text-align: center; }
+    .roles-grid {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 0.8rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .role-tag {
+      background: rgba(34,197,94,0.06);
+      border: 1px solid rgba(34,197,94,0.15);
+      color: var(--muted); font-size: 0.8rem;
+      letter-spacing: 0.05em; padding: 0.65rem 1.3rem; border-radius: 3px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .role-tag:hover {
+      background: rgba(34,197,94,0.12); border-color: var(--green); color: var(--green);
+    }
+
+    /* ── CTA ── */
+    #cta-section {
+      background: var(--deep); text-align: center; padding: 7rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    #cta-section .section-title { margin: 0 auto 1rem; }
+    #cta-section .section-body  { margin: 0 auto 2.5rem; text-align: center; }
+    .waitlist-form {
+      display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;
+    }
+    .waitlist-form input {
+      font-family: 'Instrument Sans', sans-serif; font-size: 0.9rem;
+      padding: 0.95rem 1.4rem;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 3px; width: 280px; max-width: 100%;
+      color: var(--white); outline: none; transition: border-color 0.2s;
+    }
+    .waitlist-form input::placeholder { color: var(--soft); }
+    .waitlist-form input:focus { border-color: rgba(34,197,94,0.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--void); padding: 4rem 4rem 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+    }
+    .footer-brand .nav-logo { display: block; margin-bottom: 1rem; }
+    footer p, footer a {
+      font-size: 0.78rem; font-weight: 300; line-height: 1.85;
+      color: var(--soft); text-decoration: none;
+    }
+    footer a:hover { color: var(--green); }
+    .footer-col h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(238,242,240,0.38); margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.35rem; }
+    .footer-bottom {
+      max-width: 1200px; margin: 2.5rem auto 0;
+      border-top: 1px solid var(--border); padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.7rem; flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    .fade-up {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1024px) {
+      nav { padding: 1.1rem 2rem; }
+      #curriculum-wrap, #labs-wrap, #outcomes, #roles { padding: 5rem 2rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      nav { padding: 1rem 1.5rem; }
+      #hero { min-height: 500px; }
+      .hero-scroll-hint { display: none; }
+      #curriculum { grid-template-columns: 1fr; gap: 3rem; }
+      #labs        { grid-template-columns: 1fr; gap: 3rem; }
+      .out-grid    { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-ghost { width: 100%; max-width: 300px; text-align: center; }
+      .waitlist-form { flex-direction: column; align-items: center; }
+      .waitlist-form input { width: 100%; max-width: 320px; }
+      .lab-stats { gap: 1rem; }
+      .lab-num { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="offer-banner">
+    hackacad.com is available for acquisition.&ensp;·&ensp;
+    <a href="https://hacklb.com" target="_blank" rel="noopener noreferrer">Browse our domain portfolio →</a>
+  </div>
+
+  <nav id="main-nav">
+    <a class="nav-logo" href="/">Hack<span>Acad</span></a>
+    <ul class="nav-links">
+      <li><a href="#curriculum-wrap">Curriculum</a></li>
+      <li><a href="#outcomes">Outcomes</a></li>
+      <li><a href="#labs-wrap">Labs</a></li>
+    </ul>
+    <a class="nav-cta" href="#cta-section">Enrol Now</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <button class="drawer-close" id="drawer-close" aria-label="Close menu">✕</button>
+    <a href="#curriculum-wrap" onclick="closeDrawer()">Curriculum</a>
+    <a href="#outcomes"        onclick="closeDrawer()">Outcomes</a>
+    <a href="#labs-wrap"       onclick="closeDrawer()">Labs</a>
+    <a href="#cta-section"     onclick="closeDrawer()" class="drawer-cta">Enrol Now</a>
+  </div>
+
+  <section id="hero" aria-label="Hack Acad — The Academy for Ethical Hackers">
+    <div id="hero-fallback"></div>
+    <img
+      id="hero-bg-img"
+      src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1800&q=80&auto=format&fit=crop"
+      alt="Matrix-like code visualization representing hacking education and cybersecurity training"
+    />
+    <div class="hero-overlay"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">// the academy for ethical hackers</p>
+      <h1 class="hero-title">Where hackers<br>become <em>professionals.</em></h1>
+      <p class="hero-sub">Serious curriculum. Hands-on labs. Real-world offensive security training that takes you from zero to career-ready — with the credentials that employers in cybersecurity actually respect.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#cta-section">Enrol Now</a>
+        <a class="btn-ghost"   href="#curriculum-wrap">View Curriculum</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <div id="curriculum-wrap">
+    <section id="curriculum">
+      <div class="fade-up">
+        <p class="section-label" style="color:var(--green-dim)">The Curriculum</p>
+        <h2 class="section-title dark">Six tracks.<br><em style="color:var(--green-dim)">One profession.</em></h2>
+        <p class="section-body dark">HackAcad doesn't teach tools. We teach thinking. Each track builds on the last, developing the adversarial mindset and technical depth that separate real security professionals from tutorial-followers.</p>
+      </div>
+      <div class="fade-up" style="transition-delay:0.1s;">
+        <div class="track-list">
+          <div class="track">
+            <span class="track-num">01</span>
+            <div class="track-info"><h4>Foundations</h4><p>Linux, networking, scripting, and security fundamentals</p></div>
+            <span class="track-badge beg">Beginner</span>
+          </div>
+          <div class="track">
+            <span class="track-num">02</span>
+            <div class="track-info"><h4>Web Application Security</h4><p>OWASP Top 10, SQLi, XSS, API exploitation</p></div>
+            <span class="track-badge int">Intermediate</span>
+          </div>
+          <div class="track">
+            <span class="track-num">03</span>
+            <div class="track-info"><h4>Network Penetration Testing</h4><p>Reconnaissance, exploitation, lateral movement</p></div>
+            <span class="track-badge int">Intermediate</span>
+          </div>
+          <div class="track">
+            <span class="track-num">04</span>
+            <div class="track-info"><h4>Binary Exploitation</h4><p>Buffer overflows, ROP chains, heap exploitation</p></div>
+            <span class="track-badge adv">Advanced</span>
+          </div>
+          <div class="track">
+            <span class="track-num">05</span>
+            <div class="track-info"><h4>Red Team Operations</h4><p>Full-scope engagements, C2 frameworks, OPSEC</p></div>
+            <span class="track-badge adv">Advanced</span>
+          </div>
+          <div class="track">
+            <span class="track-num">06</span>
+            <div class="track-info"><h4>Secure Code Review</h4><p>Source-assisted auditing, CVE research, disclosure</p></div>
+            <span class="track-badge adv">Advanced</span>
+          </div>
+        </div>
+        <div class="acad-callout">
+          <div class="big-word">Learn by breaking.</div>
+          <p>Every concept taught at HackAcad is proven in a live lab environment — not a slide deck. You don't understand something until you've exploited it.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section id="outcomes" aria-label="HackAcad Career Outcomes">
+    <div class="out-inner">
+      <div class="fade-up" style="max-width:600px;">
+        <p class="section-label">Career Outcomes</p>
+        <h2 class="section-title">Graduates who<br><em>get hired.</em></h2>
+        <p class="section-body">HackAcad tracks graduate placement across the cybersecurity industry. The numbers reflect a single commitment: we don't stop teaching until you're ready to work.</p>
+      </div>
+      <div class="out-grid">
+        <article class="out-card fade-up">
+          <div class="out-stat">94%</div>
+          <h3>Employed in 6 Months</h3>
+          <p>Of HackAcad graduates who complete the advanced tracks secure a cybersecurity role within six months of finishing — in pentesting, red team, or security engineering.</p>
+        </article>
+        <article class="out-card fade-up" style="transition-delay:0.1s">
+          <div class="out-stat">3×</div>
+          <h3>Salary Growth</h3>
+          <p>Average salary increase for career-changers entering cybersecurity through HackAcad — compared to their pre-enrolment income.</p>
+        </article>
+        <article class="out-card fade-up" style="transition-delay:0.2s">
+          <div class="out-stat">500+</div>
+          <h3>Labs &amp; Challenges</h3>
+          <p>Real machines, real vulnerabilities, real flags. HackAcad's lab library is the largest structured ethical hacking environment in its class.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div id="labs-wrap">
+    <section id="labs">
+      <div class="fade-up">
+        <p class="section-label">The Lab Environment</p>
+        <h2 class="section-title">Real machines.<br><em>Real flags.</em></h2>
+        <p class="section-body" style="margin-bottom:2rem;">Every HackAcad lab is a live machine running real software with real vulnerabilities. No simulations, no sandboxed toys — the same environments you'll encounter in professional engagements.</p>
+        <div class="lab-stats">
+          <div class="lab-stat">
+            <div class="lab-num">500+</div>
+            <div class="lab-label">Active machines</div>
+          </div>
+          <div class="lab-divider"></div>
+          <div class="lab-stat">
+            <div class="lab-num">24/7</div>
+            <div class="lab-label">Lab access</div>
+          </div>
+          <div class="lab-divider"></div>
+          <div class="lab-stat">
+            <div class="lab-num">CVE</div>
+            <div class="lab-label">Real vulns</div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up" style="transition-delay:0.15s;">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+            <span class="terminal-title">hackacad_lab_01.sh — corporate_network</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-prompt">student@hackacad:~$</span> <span class="t-cmd">nmap -sC -sV 10.10.10.50</span></div>
+            <div><span class="t-info">Discovered open port 445/tcp — SMB</span></div>
+            <div><span class="t-info">Discovered open port 80/tcp — Apache 2.4.41</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-prompt">student@hackacad:~$</span> <span class="t-cmd">python3 exploit.py --target 10.10.10.50</span></div>
+            <div><span class="t-out">[*] Sending exploit payload...</span></div>
+            <div><span class="t-out">[*] Shell received. Escalating privileges...</span></div>
+            <div><span class="t-out">[+] Root obtained.</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-prompt">root@corp-server:~#</span> <span class="t-cmd">cat /root/flag.txt</span></div>
+            <div><span class="t-flag">HACKACAD&#123;pr1v_esc_m4st3r_l3v3l_up&#125;</span> <span class="t-cursor">█</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section id="roles" aria-label="Roles HackAcad Prepares You For">
+    <p class="section-label">Career Destinations</p>
+    <h2 class="section-title">The roles<br><em>waiting for you</em></h2>
+    <p class="section-body">HackAcad graduates go on to work across every offensive and defensive security discipline — at startups, enterprises, government agencies, and the world's top security consultancies.</p>
+    <div class="roles-grid fade-up">
+      <span class="role-tag">Penetration Tester</span>
+      <span class="role-tag">Red Team Operator</span>
+      <span class="role-tag">Security Engineer</span>
+      <span class="role-tag">Bug Bounty Hunter</span>
+      <span class="role-tag">Malware Analyst</span>
+      <span class="role-tag">CTF Competitor</span>
+      <span class="role-tag">Vulnerability Researcher</span>
+      <span class="role-tag">Threat Intelligence Analyst</span>
+      <span class="role-tag">CISO (long game)</span>
+    </div>
+  </section>
+
+  <section id="cta-section" aria-label="Enrol in HackAcad">
+    <p class="section-label">// begin_enrollment</p>
+    <h2 class="section-title" style="max-width:560px; margin:0 auto 1rem;">Ready to start<br>thinking like a <em>hacker?</em></h2>
+    <p class="section-body">Join the waitlist for HackAcad's next cohort. Seats are limited — we keep cohorts small so mentors can go deep with every student.</p>
+    <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+      <input type="email" id="email-input" placeholder="you@email.com" required />
+      <button type="submit" class="btn-primary">Reserve My Seat</button>
+    </form>
+    <p id="waitlist-msg" style="margin-top:1.2rem; font-size:0.82rem; color:var(--green); font-family:'JetBrains Mono',monospace; min-height:1.2em;"></p>
+    <p style="font-size:0.7rem; color:var(--soft); margin-top:0.5rem;">No spam. Cohort dates announced to waitlist first.</p>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/">Hack<span>Acad</span></a>
+        <p>The academy for ethical hackers.<br>Serious curriculum. Real labs. Career outcomes.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="#">Curriculum</a></li>
+          <li><a href="#">Labs</a></li>
+          <li><a href="#">Certifications</a></li>
+          <li><a href="#">Writeups</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Academy</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Mentors</a></li>
+          <li><a href="#">Outcomes</a></li>
+          <li><a href="#">Hiring Partners</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 HackAcad. All rights reserved.</p>
+      <p>hackacad.com — hack legally, learn seriously.</p>
+    </div>
+  </footer>
+
+  <script>
+    var hamburger = document.getElementById('hamburger');
+    var drawer = document.getElementById('nav-drawer');
+    var drawerClose = document.getElementById('drawer-close');
+    hamburger.addEventListener('click', function () {
+      var isOpen = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    drawerClose.addEventListener('click', closeDrawer);
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+    window.addEventListener('scroll', function () {
+      document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(function (el) { observer.observe(el); });
+    function handleWaitlist(e) {
+      e.preventDefault();
+      document.getElementById('waitlist-msg').textContent = '// seat_reserved: cohort details incoming.';
+      document.getElementById('email-input').value = '';
+    }
+  </script>
+</body>
+</html>
